@@ -4,7 +4,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="mlt.fencepuzzle.Welcome">
+        tools:context="mlt.fencepuzzle.WelcomeActivity">
 
     <TextView
         android:layout_width="match_parent"
