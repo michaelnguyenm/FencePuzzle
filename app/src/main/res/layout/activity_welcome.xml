@@ -12,7 +12,25 @@
         android:gravity="center"
         android:text="@string/fence_puzzle_title"
         android:textSize="30sp"
-        android:paddingTop="30dp"/>
+        android:paddingTop="30dp"
+        android:paddingBottom="100dp"/>
 
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/start_game"/>
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/instructions"/>
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/options"/>
 
 </LinearLayout>
