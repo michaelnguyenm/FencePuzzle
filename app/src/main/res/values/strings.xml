@@ -5,4 +5,8 @@
     <string name="instructions">Instructions</string>
     <string name="options">Options</string>
     <string name="filler_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula odio in velit ultricies feugiat. Pellentesque accumsan congue orci, ac accumsan velit facilisis et. Aenean eget consequat urna, vel vestibulum lectus. Ut maximus rhoncus odio, vel pretium justo vehicula ut. Nam semper lorem in tincidunt varius. Proin varius pretium justo sit amet semper. Fusce semper nisi id nunc lacinia, sed molestie nulla aliquet. Vestibulum accumsan, mi eu iaculis pharetra, felis metus dignissim ipsum, at imperdiet purus nisi eu erat. Curabitur ut erat tempor nibh consequat commodo sit amet et tortor. Integer fermentum libero ut fermentum consectetur. Integer in sollicitudin ligula. Morbi congue consequat dui, vel cursus dui vehicula in. Donec ultricies, sem eu suscipit pretium, lectus lectus suscipit felis, sed sagittis nibh eros in libero. Suspendisse ut risus ante. Nunc finibus posuere massa non pretium.</string>
+    <string name="level_selector_title">Level Select</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
 </resources>

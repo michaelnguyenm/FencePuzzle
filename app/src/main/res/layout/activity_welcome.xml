@@ -19,7 +19,8 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/start_game"/>
+        android:text="@string/start_game"
+        android:onClick="chooseLevel"/>
 
     <Button
         android:layout_width="200dp"
