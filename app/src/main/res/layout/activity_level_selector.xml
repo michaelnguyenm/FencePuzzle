@@ -27,20 +27,20 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
 
         <Button
             android:id="@+id/easy_1"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="2.5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1">
         </Button>
         <Button
             android:id="@+id/easy_2"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginLeft="2.5dp"
+            android:layout_marginRight="2.5dp"
             android:layout_toRightOf="@id/easy_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,8 +48,8 @@
         </Button>
         <Button
             android:id="@+id/easy_3"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginLeft="2.5dp"
+            android:layout_marginRight="2.5dp"
             android:layout_toRightOf="@id/easy_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
         </Button>
         <Button
             android:id="@+id/easy_4"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="2.5dp"
             android:layout_toRightOf="@id/easy_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -77,20 +77,20 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
 
         <Button
             android:id="@+id/medium_1"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="2.5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="5">
         </Button>
         <Button
             android:id="@+id/medium_2"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginLeft="2.5dp"
+            android:layout_marginRight="2.5dp"
             android:layout_toRightOf="@id/medium_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -98,8 +98,8 @@
         </Button>
         <Button
             android:id="@+id/medium_3"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginLeft="2.5dp"
+            android:layout_marginRight="2.5dp"
             android:layout_toRightOf="@id/medium_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
         </Button>
         <Button
             android:id="@+id/medium_4"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="2.5dp"
             android:layout_toRightOf="@id/medium_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -127,20 +127,20 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
 
         <Button
             android:id="@+id/hard_1"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="2.5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="9">
         </Button>
         <Button
             android:id="@+id/hard_2"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginLeft="2.5dp"
+            android:layout_marginRight="2.5dp"
             android:layout_toRightOf="@id/hard_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -148,8 +148,8 @@
         </Button>
         <Button
             android:id="@+id/hard_3"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginLeft="2.5dp"
+            android:layout_marginRight="2.5dp"
             android:layout_toRightOf="@id/hard_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -157,7 +157,7 @@
         </Button>
         <Button
             android:id="@+id/hard_4"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="2.5dp"
             android:layout_toRightOf="@id/hard_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
