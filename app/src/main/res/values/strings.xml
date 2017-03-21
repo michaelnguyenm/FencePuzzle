@@ -13,6 +13,11 @@
 
     <!-- Strings related to Settings -->
 
+    <!--Strings in the Instructions Activity-->
+    <string name="instructions_content">
+        Simply touch a tile to rotate it 90 degrees clockwise.
+        You must rotate each tile so that the fences connect into a single, continuous enclosure to solve the puzzle.
+    </string>
     <!-- Example General settings -->
     <string name="pref_header_general">General</string>
 
