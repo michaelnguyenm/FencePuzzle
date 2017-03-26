@@ -38,6 +38,8 @@ public class Fence {
         return currentOrientation;
     }
 
+    public void changeOrientation(){}
+
     public void setOrientation(Orientation newOrientation){
         currentOrientation = newOrientation;
     }

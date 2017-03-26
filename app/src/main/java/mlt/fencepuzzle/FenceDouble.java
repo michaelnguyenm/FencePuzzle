@@ -14,10 +14,10 @@ public class FenceDouble extends Fence {
     }
 
     public void changeOrientation(){
-        if(this.getOrientation() == Orientation.LEFT){
-            this.setOrientation(Orientation.RIGHT);
+        if(super.getOrientation() == Orientation.LEFT){
+            super.setOrientation(Orientation.RIGHT);
         } else {
-            this.setOrientation(Orientation.LEFT);
+            super.setOrientation(Orientation.LEFT);
         }
     }
 }

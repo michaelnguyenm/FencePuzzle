@@ -14,14 +14,14 @@ public class FenceCurved extends Fence {
     }
 
     public void changeOrientation(){
-        if(this.getOrientation() == Orientation.UP){
-            this.setOrientation(Orientation.RIGHT);
-        } else if(this.getOrientation() == Orientation.RIGHT) {
-            this.setOrientation(Orientation.DOWN);
-        } else if(this.getOrientation() == Orientation.DOWN){
-            this.setOrientation(Orientation.LEFT);
+        if(super.getOrientation() == Orientation.UP){
+            super.setOrientation(Orientation.RIGHT);
+        } else if(super.getOrientation() == Orientation.RIGHT) {
+            super.setOrientation(Orientation.DOWN);
+        } else if(super.getOrientation() == Orientation.DOWN){
+            super.setOrientation(Orientation.LEFT);
         } else {
-            this.setOrientation(Orientation.UP);
+            super.setOrientation(Orientation.UP);
         }
     }
 }

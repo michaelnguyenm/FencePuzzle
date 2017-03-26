@@ -14,10 +14,10 @@ public class FenceStraight extends Fence {
     }
 
     public void changeOrientation(){
-        if(this.getOrientation() == Orientation.VERTICAL){
-            this.setOrientation(Orientation.HORIZONTAL);
+        if(super.getOrientation() == Orientation.VERTICAL){
+            super.setOrientation(Orientation.HORIZONTAL);
         } else {
-            this.setOrientation(Orientation.VERTICAL);
+            super.setOrientation(Orientation.VERTICAL);
         }
     }
 }
