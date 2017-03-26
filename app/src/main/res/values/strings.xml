@@ -1,20 +1,33 @@
 <resources>
+    <!--Strings in Welcome Activity-->
     <string name="app_name">Fence Puzzle</string>
     <string name="fence_puzzle_title">Fence Puzzle</string>
     <string name="start_game">Start Game</string>
     <string name="instructions">Instructions</string>
     <string name="options">Options</string>
-    <string name="filler_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula odio in velit ultricies feugiat. Pellentesque accumsan congue orci, ac accumsan velit facilisis et. Aenean eget consequat urna, vel vestibulum lectus. Ut maximus rhoncus odio, vel pretium justo vehicula ut. Nam semper lorem in tincidunt varius. Proin varius pretium justo sit amet semper. Fusce semper nisi id nunc lacinia, sed molestie nulla aliquet. Vestibulum accumsan, mi eu iaculis pharetra, felis metus dignissim ipsum, at imperdiet purus nisi eu erat. Curabitur ut erat tempor nibh consequat commodo sit amet et tortor. Integer fermentum libero ut fermentum consectetur. Integer in sollicitudin ligula. Morbi congue consequat dui, vel cursus dui vehicula in. Donec ultricies, sem eu suscipit pretium, lectus lectus suscipit felis, sed sagittis nibh eros in libero. Suspendisse ut risus ante. Nunc finibus posuere massa non pretium.</string>
+
+    <!--Strings in Level Selector Activity-->
     <string name="level_selector_title">Level Select</string>
     <string name="easy">Easy</string>
     <string name="medium">Medium</string>
     <string name="hard">Hard</string>
-    <string name="title_activity_settings">Settings</string>
 
     <!--Strings in the Instructions Activity-->
     <string name="instructions_content">
         Simply touch a tile to rotate it 90 degrees clockwise.
         You must rotate each tile so that the fences connect into a single, continuous enclosure to solve the puzzle.
     </string>
+
+    <!--Strings in the Settings Activity-->
+    <string name="title_activity_settings">Settings</string>
+    <string-array name="background_options">
+        <item>@string/white</item>
+        <item>@string/green</item>
+    </string-array>
+    <string name="white">White</string>
+    <string name="green">Green</string>
+
+    <!--Other Strings-->
+    <string name="filler_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula odio in velit ultricies feugiat. Pellentesque accumsan congue orci, ac accumsan velit facilisis et. Aenean eget consequat urna, vel vestibulum lectus. Ut maximus rhoncus odio, vel pretium justo vehicula ut. Nam semper lorem in tincidunt varius. Proin varius pretium justo sit amet semper. Fusce semper nisi id nunc lacinia, sed molestie nulla aliquet. Vestibulum accumsan, mi eu iaculis pharetra, felis metus dignissim ipsum, at imperdiet purus nisi eu erat. Curabitur ut erat tempor nibh consequat commodo sit amet et tortor. Integer fermentum libero ut fermentum consectetur. Integer in sollicitudin ligula. Morbi congue consequat dui, vel cursus dui vehicula in. Donec ultricies, sem eu suscipit pretium, lectus suscipit felis, sed sagittis nibh eros in libero. Suspendisse ut risus ante. Nunc finibus posuere massa non pretium.</string>
 
 </resources>
