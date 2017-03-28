@@ -45,6 +45,4 @@ public class WelcomeActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivityForResult(intent, SETTINGS_REQUEST);
     }
-
-
 }
