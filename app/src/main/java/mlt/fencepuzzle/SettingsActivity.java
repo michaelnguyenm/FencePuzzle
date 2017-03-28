@@ -2,6 +2,7 @@ package mlt.fencepuzzle;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.support.v7.app.AppCompatActivity;
 
@@ -28,6 +29,36 @@ public class SettingsActivity extends AppCompatActivity {
             sharedPrefs = getActivity().getSharedPreferences("FencePuzzle", MODE_PRIVATE);
 
             addPreferencesFromResource(R.xml.preferences);
+
+            updateBackgroundSummary();
+            setBackgroundListener();
+        }
+
+        private void setBackgroundListener() {
+            final Preference themePref = findPreference("theme_option");
+            themePref.setOnPreferenceChangeListener(
+                    new Preference.OnPreferenceChangeListener() {
+
+                        @Override
+                        public boolean onPreferenceChange(Preference preference, Object newValue) {
+                            String themeSummary = "Current theme: " + newValue;
+                            themePref.setSummary(themeSummary);
+
+                            SharedPreferences.Editor ed = sharedPrefs.edit();
+                            ed.putString("theme_option", newValue.toString());
+                            ed.apply();
+                            return true;
+                        }
+                    });
+        }
+
+        private void updateBackgroundSummary() {
+            String themeSummary = "Current theme: " +
+                    sharedPrefs.getString("theme_option",
+                            getString(R.string.white));
+
+            Preference themeMessagePref = findPreference("theme_option");
+            themeMessagePref.setSummary(themeSummary);
         }
     }
 

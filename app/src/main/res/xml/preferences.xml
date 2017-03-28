@@ -17,11 +17,11 @@
     <PreferenceCategory
         android:title="Appearance">
         <ListPreference
-            android:key="background_options"
-            android:title="Background"
+            android:key="theme_option"
+            android:title="Theme"
             android:summary=""
             android:defaultValue="@string/white"
-            android:entries="@array/background_options"
-            android:entryValues="@array/background_options"/>
+            android:entries="@array/theme_options"
+            android:entryValues="@array/theme_options"/>
     </PreferenceCategory>
 </PreferenceScreen>

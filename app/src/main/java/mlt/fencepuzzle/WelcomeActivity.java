@@ -46,5 +46,9 @@ public class WelcomeActivity extends AppCompatActivity {
         startActivityForResult(intent, SETTINGS_REQUEST);
     }
 
+    public void testSound(View view) {
+        Intent intent = new Intent(this, TestSoundActivity.class);
+        startActivity(intent);
+    }
 
 }
