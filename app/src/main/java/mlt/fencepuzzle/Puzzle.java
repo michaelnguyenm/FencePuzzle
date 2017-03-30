@@ -14,18 +14,35 @@ public class Puzzle {
 
     }
 
-    public Puzzle(int[] correctPos, int[] start){
+    public Puzzle(int[] pieces, int[] correctPos, int[] start){
         fencePieces = new Fence[correctPos.length];
-        createFences(correctPos, start);
+        createFences(pieces, correctPos, start);
         size = fencePieces.length;
         correct = checkIsCorrect();
     }
 
-    private void createFences(int[] correct, int[] start) {
+    private void createFences(int[] pieces, int[] correct, int[] start) {
         assert correct.length == start.length;
 
         for (int i=0; i<correct.length; i++){
-            fencePieces[i] = new Fence(correct[i], start[i]);
+
+            switch(pieces[i]){
+                case 0:
+                    fencePieces[i] = new FenceBlank(correct[i], start[i]);
+                    break;
+                case 1:
+                    fencePieces[i] = new FenceStraight(correct[i], start[i]);
+                    break;
+                case 2:
+                    fencePieces[i] = new FenceCurved(correct[i], start[i]);
+                    break;
+                case 3:
+                    fencePieces[i] = new FenceDouble(correct[i], start[i]);
+                    break;
+                default:
+                    //TODO: add some error message
+                    break;
+            }
         }
     }
 
