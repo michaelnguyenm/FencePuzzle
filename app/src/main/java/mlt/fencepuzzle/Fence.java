@@ -6,61 +6,62 @@ package mlt.fencepuzzle;
 
 public class Fence {
 
-    //Assuming rotation is clockwise
-    public enum Orientation {
-        NONE, UP, LEFT, DOWN, RIGHT, VERTICAL, HORIZONTAL
+    //laura note: enums can't be inherited and altered, use this instead :P
+    private int[] directions;
+    private int correctDir;
+    private int startDir;
+    private int currDir;
+    public boolean isCorrect;
+
+    public Fence() {
     }
 
-    public enum FenceType{
-        BLANK, STRAIGHT, CURVED, DOUBLE
+    public int getCorrectDir() {
+        return correctDir;
     }
 
-    private Orientation currentOrientation;
-    private Orientation correctOrientation;
-    private FenceType typeFence;
-    private boolean movable;
-    private int xPos;
-    private int yPos;
+    public int getStartDir() {
+        return startDir;
+    }
 
-    public Fence(Orientation currentOrientation, FenceType typeFence, int xPos, int yPos){
-        this.currentOrientation = currentOrientation;
-        this.correctOrientation = currentOrientation;
-        this.typeFence = typeFence;
-        if(typeFence == FenceType.BLANK){
-            movable = false;
-        }
-        this.xPos = xPos;
-        this.yPos = yPos;
+    public int getCurrDir() {
+        return currDir;
+    }
+
+    public void setCurrDir(int currDir) {
+        this.currDir = currDir;
+    }
+
+    public Fence (int correct, int start, int[] in_directions){
+        correctDir = correct;
+        startDir = start;
+        currDir = start;
+        updateCorrect();
+        directions = in_directions;
+    }
+
+    public Fence (int correct, int start){
+        correctDir = correct;
+        startDir = start;
+        currDir = start;
+        updateCorrect();
     }
 
 
-    public Orientation getOrientation(){
-        return currentOrientation;
+    //returns the next direction (up->right->down->left->up...)
+    public int getNext(){
+        return directions[(currDir+1) % directions.length];
     }
 
-    public void changeOrientation(){}
-
-    public void setOrientation(Orientation newOrientation){
-        currentOrientation = newOrientation;
+    public boolean checkCorrect(){
+        return currDir == correctDir;
     }
 
-    public FenceType getTypeFence(){
-        return typeFence;
+    public void updateCorrect(){
+        isCorrect = checkCorrect();
     }
 
-    public boolean canMove(){
-        return movable;
-    }
-
-    public int getXPos(){
-        return xPos;
-    }
-
-    public int getYPos(){
-        return yPos;
-    }
-
-    public boolean solutionChecker(){
-        return currentOrientation == correctOrientation;
+    public void setDirections(int[] in){
+        directions = in;
     }
 }

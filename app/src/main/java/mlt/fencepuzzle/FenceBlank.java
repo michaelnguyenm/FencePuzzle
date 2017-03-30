@@ -5,7 +5,12 @@ package mlt.fencepuzzle;
  */
 
 public class FenceBlank extends Fence {
-    public FenceBlank(int xPos, int yPos){
-        super(Orientation.NONE, FenceType.BLANK, xPos, yPos);
+    public FenceBlank (int correct, int start){
+        super(correct, start);
+
+        int[] hue = new int[]{1};
+        super.setDirections(hue);
     }
+
+
 }

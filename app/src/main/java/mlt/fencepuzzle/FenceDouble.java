@@ -5,19 +5,10 @@ package mlt.fencepuzzle;
  */
 
 public class FenceDouble extends Fence {
-    public FenceDouble(Orientation fenceOrientation, int xPos, int yPos){
-        super(fenceOrientation, FenceType.CURVED, xPos, yPos);
-    }
+    public FenceDouble (int correct, int start){
+        super(correct, start);
 
-    public FenceDouble(int xPos, int yPos){
-        super(Orientation.LEFT, FenceType.CURVED, xPos, yPos);
-    }
-
-    public void changeOrientation(){
-        if(super.getOrientation() == Orientation.LEFT){
-            super.setOrientation(Orientation.RIGHT);
-        } else {
-            super.setOrientation(Orientation.LEFT);
-        }
+        int[] hue = new int[]{1,2};
+        super.setDirections(hue);
     }
 }
