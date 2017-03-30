@@ -19,6 +19,7 @@
     </string>
 
     <!--Strings in the Settings Activity-->
+    <!--These are just temporary values-->
     <string name="title_activity_settings">Settings</string>
     <string-array name="theme_options">
         <item>@string/white</item>
