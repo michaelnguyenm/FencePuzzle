@@ -30,11 +30,11 @@ public class SettingsActivity extends AppCompatActivity {
 
             addPreferencesFromResource(R.xml.preferences);
 
-            updateBackgroundSummary();
-            setBackgroundListener();
+            updateThemeSummary();
+            setThemeListener();
         }
 
-        private void setBackgroundListener() {
+        private void setThemeListener() {
             final Preference themePref = findPreference("theme_option");
             themePref.setOnPreferenceChangeListener(
                     new Preference.OnPreferenceChangeListener() {
@@ -52,7 +52,7 @@ public class SettingsActivity extends AppCompatActivity {
                     });
         }
 
-        private void updateBackgroundSummary() {
+        private void updateThemeSummary() {
             String themeSummary = "Current theme: " +
                     sharedPrefs.getString("theme_option",
                             getString(R.string.white));

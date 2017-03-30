@@ -36,11 +36,4 @@
         android:text="@string/options"
         android:onClick="changeSettings"/>
 
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Test Sound"
-        android:onClick="testSound"/>
-
 </LinearLayout>
