@@ -16,6 +16,10 @@ public class Level {
         //read external file and call createPuzzle
     }
 
+    public Level(int levelID){
+        //read external file and call createPuzzle
+    }
+
     public Puzzle createPuzzle(int[] pieces, int[] correct, int[] start){
         return new Puzzle(pieces, correct, start);
     }
