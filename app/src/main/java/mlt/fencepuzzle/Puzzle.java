@@ -21,6 +21,10 @@ public class Puzzle {
         correct = checkIsCorrect();
     }
 
+    public void movePiece(int piecePos){
+        fencePieces[piecePos].rotate();
+    }
+
     private void createFences(int[] pieces, int[] correct, int[] start) {
         assert correct.length == start.length;
 

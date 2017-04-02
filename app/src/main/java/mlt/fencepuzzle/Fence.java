@@ -53,6 +53,10 @@ public class Fence {
         return directions[(currDir+1) % directions.length];
     }
 
+    public void rotate(){
+        currDir = getNext();
+    }
+
     public boolean checkCorrect(){
         return currDir == correctDir;
     }
