@@ -51,6 +51,9 @@ public class LevelSelectorActivity extends AppCompatActivity {
         Log.d(TAG, "" + Integer.parseInt(b.getText().toString()));
     }
 
-
+    public void selectLevelOne(View view) {
+        Intent intent = new Intent(this, GameActivity.class);
+        startActivity(intent);
+    }
 
 }
