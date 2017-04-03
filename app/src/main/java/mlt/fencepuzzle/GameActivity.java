@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 
 public class GameActivity extends AppCompatActivity {
@@ -20,11 +21,17 @@ public class GameActivity extends AppCompatActivity {
     private boolean mSoundOn;
     private int mTheme;
 
+    // I think we need these??? ;w;
+    private BoardView mBoardView;
+    private Puzzle mPuzzle;
+    private Level mLevel;
+
     // Settings
     private static int SETTINGS_REQUEST = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -33,7 +40,36 @@ public class GameActivity extends AppCompatActivity {
         // Get settings first
         setInstanceVarsFromSharedPrefs();
         // Now draw views
+        // Aye aye, captain Michael! :D
+
+        //***
+//        Intent myIntent = getIntent(); // gets the previously created intent
+//        int levelID = myIntent.getIntExtra("levelID", -1); // fetches level id from LevelSelectorActivity
+        mBoardView = (BoardView) findViewById(R.id.boardView);
+        mLevel = new Level(1);
+        mPuzzle = mLevel.puzzle;
+        mBoardView.setLevel(mLevel);
+        mBoardView.setPuzzle(mPuzzle);
+//        mBoardView.setOnTouchListener(mTouchListener);
+//        startNewGame();
+
     }
+
+    public Fence getFenceAt(int index){
+        return mPuzzle.getFenceAt(index);
+    }
+
+    private void startNewGame() {
+        mPuzzle.resetPositions();
+        //TODO: reset a 'turns' counter
+
+    }
+
+    private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
+        public boolean onTouch(View v, MotionEvent event) {
+            return false;
+        }
+    };
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -72,5 +108,8 @@ public class GameActivity extends AppCompatActivity {
         Log.d(TAG, "Sound is: " + mSoundOn);
         Log.d(TAG, "Theme is: " + mTheme + ": " + themeName);
         Log.d(TAG, "Music is: " + mMusicOn);
+    }
+
+    public void setGameActivity(BoardView boardView) {
     }
 }

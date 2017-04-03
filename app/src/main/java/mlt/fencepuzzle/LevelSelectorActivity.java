@@ -52,7 +52,9 @@ public class LevelSelectorActivity extends AppCompatActivity {
     }
 
     public void selectLevelOne(View view) {
+        Button b = (Button) view;
         Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("levelID", Integer.parseInt(b.getText().toString()));
         startActivity(intent);
     }
 

@@ -10,7 +10,7 @@ public class Level {
     //read from external file to generate a puzzle given a level id
 
     //later on we can have this auto-generate puzzles
-
+    private static final String TAG = "Level";
     public Puzzle puzzle;
     private int levelID;
     private int size;
@@ -28,12 +28,12 @@ public class Level {
         puzzle = createPuzzle(info.get(0), info.get(1), info.get(2));
     }
 
-    public ArrayList<int[]> getPuzzleInfo(int id){
+    public ArrayList<int[]> getPuzzleInfo(int levelID){
         //TODO: change so that you actually read
-        ArrayList<int[]> info = new ArrayList<int[]>();
-        int[] pieces = {};
-        int[] correct = {};
-        int[] start = {};
+        ArrayList<int[]> info = new ArrayList<>();
+        int[] pieces = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        int[] correct = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        int[] start = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
         info.add(pieces);
         info.add(correct);
         info.add(start);

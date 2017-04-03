@@ -28,6 +28,8 @@ public class Fence {
         return currDir;
     }
 
+    public int getFenceType() {return -1;}
+
     public void setCurrDir(int currDir) {
         this.currDir = currDir;
     }
@@ -55,6 +57,10 @@ public class Fence {
 
     public void rotate(){
         currDir = getNext();
+    }
+
+    public void resetPosition(){
+        currDir = startDir;
     }
 
     public boolean checkCorrect(){

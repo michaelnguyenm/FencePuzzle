@@ -12,4 +12,9 @@ public class FenceStraight extends Fence {
         super.setDirections(hue);
     }
 
+    @Override
+    public int getFenceType() {
+        return 1;
+    }
+
 }

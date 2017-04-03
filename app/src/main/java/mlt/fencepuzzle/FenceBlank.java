@@ -12,5 +12,10 @@ public class FenceBlank extends Fence {
         super.setDirections(hue);
     }
 
+    @Override
+    public int getFenceType() {
+        return 0;
+    }
+
 
 }

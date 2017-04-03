@@ -1,5 +1,7 @@
 package mlt.fencepuzzle;
 
+import android.util.Log;
+
 /**
  * Created by Laura Yu on 3/29/2017.
  */
@@ -9,7 +11,8 @@ public class Puzzle {
     private int size;
     private Fence[] fencePieces;
     private boolean correct;
-
+    public final static int BOARD_SIZE = 64;
+    private static final String TAG = "Puzzle";
     public Puzzle(){
 
     }
@@ -19,6 +22,18 @@ public class Puzzle {
         createFences(pieces, correctPos, start);
         size = fencePieces.length;
         correct = checkIsCorrect();
+        Log.d(TAG, "In Puzzle. method Puzzle" );
+    }
+
+    public void resetPositions(){
+        for (Fence x : fencePieces){
+            x.resetPosition();
+        }
+    }
+
+    //return Fence object at index index
+    public Fence getFenceAt(int index){
+        return fencePieces[index];
     }
 
     public void movePiece(int piecePos){
@@ -27,6 +42,7 @@ public class Puzzle {
 
     private void createFences(int[] pieces, int[] correct, int[] start) {
         assert correct.length == start.length;
+        Log.d(TAG, "In Fence. method createFence" );
 
         for (int i=0; i<correct.length; i++){
 

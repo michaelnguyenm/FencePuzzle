@@ -11,4 +11,8 @@ public class FenceDouble extends Fence {
         int[] hue = new int[]{1,2};
         super.setDirections(hue);
     }
+    @Override
+    public int getFenceType() {
+        return 3;
+    }
 }

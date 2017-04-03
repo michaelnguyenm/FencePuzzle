@@ -11,4 +11,9 @@ public class FenceCurved extends Fence {
         int[] hue = new int[]{1,2,3,4};
         super.setDirections(hue);
     }
+
+    @Override
+    public int getFenceType() {
+        return 2;
+    }
 }
