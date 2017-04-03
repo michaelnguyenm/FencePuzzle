@@ -21,7 +21,7 @@ public class Puzzle {
         fencePieces = new Fence[correctPos.length];
         createFences(pieces, correctPos, start);
         size = fencePieces.length;
-        correct = checkIsCorrect();
+        updateCorrect();
         Log.d(TAG, "In Puzzle. method Puzzle" );
     }
 
@@ -38,6 +38,7 @@ public class Puzzle {
 
     public void movePiece(int piecePos){
         fencePieces[piecePos].rotate();
+        updateCorrect();
     }
 
     private void createFences(int[] pieces, int[] correct, int[] start) {
@@ -66,12 +67,16 @@ public class Puzzle {
         }
     }
 
-    private boolean checkIsCorrect(){
+    private void updateCorrect(){
+        correct = isCorrect();
+    }
+
+    public boolean isCorrect() {
         for (Fence i : fencePieces){
-            if (!i.isCorrect)
+//            Log.d(TAG, "In Puzzle. updateCorrect method. isCorrect:" +  i.isCorrect);
+            if (i.isCorrect == false)
                 return false;
         }
         return true;
     }
-
 }

@@ -8,7 +8,7 @@ public class FenceDouble extends Fence {
     public FenceDouble (int correct, int start){
         super(correct, start);
 
-        int[] hue = new int[]{1,2};
+        int[] hue = new int[]{0,1};
         super.setDirections(hue);
     }
     @Override

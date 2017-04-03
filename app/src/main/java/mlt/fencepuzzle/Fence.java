@@ -49,7 +49,6 @@ public class Fence {
         updateCorrect();
     }
 
-
     //returns the next direction (up->right->down->left->up...)
     public int getNext(){
         return directions[(currDir+1) % directions.length];
@@ -57,13 +56,14 @@ public class Fence {
 
     public void rotate(){
         currDir = getNext();
+        updateCorrect();
     }
 
     public void resetPosition(){
         currDir = startDir;
     }
 
-    public boolean checkCorrect(){
+    private boolean checkCorrect(){
         return currDir == correctDir;
     }
 

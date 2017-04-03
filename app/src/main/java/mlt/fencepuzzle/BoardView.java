@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Paint.FontMetrics;
 import android.graphics.Paint.Style;
@@ -67,15 +68,11 @@ public class BoardView extends View{
         mStraight = BitmapFactory.decodeResource(getResources(), R.drawable.tile_straight);
         mCurved = BitmapFactory.decodeResource(getResources(), R.drawable.tile_curved1);
         mDouble = BitmapFactory.decodeResource(getResources(), R.drawable.tile_double);
-//****
-//        mBlank = Bitmap.createScaledBitmap(
-//                mBlank, fenceWidth, fenceWidth, false);
-//        mStraight = Bitmap.createScaledBitmap(
-//                mStraight, fenceWidth, fenceWidth, false);
-//        mCurved = Bitmap.createScaledBitmap(
-//                mCurved, fenceWidth, fenceWidth, false);
-//        mDouble = Bitmap.createScaledBitmap(
-//                mDouble, fenceWidth, fenceWidth, false);
+
+    }
+
+    public int getBoardFenceWidth(){
+        return fenceWidth;
     }
 
     @Override
@@ -93,20 +90,6 @@ public class BoardView extends View{
         fenceWidth = getWidth()/8;
         Rect drawingRect = new Rect();
 
-//***testing
-//        int col = 0;
-//        int row = 0;
-//        fenceWidth = getWidth()/8;
-//        drawingRect.left = col * fenceWidth; // x coordinate of left side of rect
-//        drawingRect.top = row * fenceWidth; // y coordinate of top of rect
-//        drawingRect.right = drawingRect.left + fenceWidth; // x coordinate of right side of rect
-//        drawingRect.bottom = drawingRect.top + fenceWidth; // y coordinate of bottom of rect
-//        canvas.drawBitmap(mDouble, null, drawingRect, null);
-//
-//
-//        Log.d(TAG, "In BoardView. after drawing tile" );
-
-        //***
 
         for(int i=0; i<64; i++){
             int col = i % 8;
@@ -119,7 +102,7 @@ public class BoardView extends View{
             drawingRect.bottom = drawingRect.top + fenceWidth; // y coordinate of bottom of rect
 
             Fence temp = mPuzzle.getFenceAt(i);
-            Log.d(TAG, "In BoardView. temp.getFenceType:" +  temp.getFenceType());
+//            Log.d(TAG, "In BoardView. temp.getFenceType:" +  temp.getFenceType());
 
             Bitmap toDraw;
 
@@ -148,19 +131,34 @@ public class BoardView extends View{
     }
 
     private Bitmap drawFenceDouble(Fence temp) {
-        return mDouble;
+        int curPos = temp.getCurrDir();
+        return RotateBitmap(mDouble, (curPos*90));
+//        return mDouble;
     }
 
     private Bitmap drawFenceCurved(Fence temp) {
-        return mCurved;
+        int curPos = temp.getCurrDir();
+        return RotateBitmap(mCurved, (curPos*90));
+//        return mCurved;
     }
 
     private Bitmap drawFenceStraight(Fence temp) {
-        return mStraight;
+        int curPos = temp.getCurrDir();
+        return RotateBitmap(mStraight, (curPos*90));
+//        return mStraight;
     }
 
     private Bitmap drawFenceBlank(Fence temp){
-        return mBlank;
+        int curPos = temp.getCurrDir();
+        return RotateBitmap(mBlank, (curPos*90));
+//        return mBlank;
+    }
+
+    public static Bitmap RotateBitmap(Bitmap source, float angle)
+    {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
 
 

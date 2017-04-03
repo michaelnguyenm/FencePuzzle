@@ -8,7 +8,7 @@ public class FenceBlank extends Fence {
     public FenceBlank (int correct, int start){
         super(correct, start);
 
-        int[] hue = new int[]{1};
+        int[] hue = new int[]{0};
         super.setDirections(hue);
     }
 

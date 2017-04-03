@@ -3,6 +3,7 @@ package mlt.fencepuzzle;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.app.AlertDialog;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -43,15 +45,15 @@ public class GameActivity extends AppCompatActivity {
         // Aye aye, captain Michael! :D
 
         //***
-//        Intent myIntent = getIntent(); // gets the previously created intent
-//        int levelID = myIntent.getIntExtra("levelID", -1); // fetches level id from LevelSelectorActivity
+        Intent myIntent = getIntent(); // gets the previously created intent
+        int levelID = myIntent.getIntExtra("levelID", -1); // fetches level id from LevelSelectorActivity
         mBoardView = (BoardView) findViewById(R.id.boardView);
-        mLevel = new Level(1);
+        mLevel = new Level(levelID);
         mPuzzle = mLevel.puzzle;
         mBoardView.setLevel(mLevel);
         mBoardView.setPuzzle(mPuzzle);
-//        mBoardView.setOnTouchListener(mTouchListener);
-//        startNewGame();
+        mBoardView.setOnTouchListener(mTouchListener);
+        startNewGame();
 
     }
 
@@ -61,12 +63,28 @@ public class GameActivity extends AppCompatActivity {
 
     private void startNewGame() {
         mPuzzle.resetPositions();
+        mBoardView.invalidate();
         //TODO: reset a 'turns' counter
-
     }
 
     private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
         public boolean onTouch(View v, MotionEvent event) {
+            Log.d(TAG, "In GameActivity. method mTouchListener. isCorrect: "+mPuzzle.isCorrect());
+            if(!mPuzzle.isCorrect()) {
+
+                int col = (int) event.getX() / mBoardView.getBoardFenceWidth();
+                int row = (int) event.getY() / mBoardView.getBoardFenceWidth();
+                int pos = row * 8 + col;
+                Log.d(TAG, "In GameActivity. method mTouchListener. Pos: " +pos);
+                mPuzzle.movePiece(pos);
+                //rotate and redraw
+                mBoardView.invalidate();
+                //check correct, if so, toast!
+                if (mPuzzle.isCorrect()) {
+                    //toast
+                    Toast.makeText(getApplicationContext(), "You did it! Go BACK and try another level!", Toast.LENGTH_LONG).show();
+                }
+            }
             return false;
         }
     };

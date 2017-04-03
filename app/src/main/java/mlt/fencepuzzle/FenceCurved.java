@@ -8,7 +8,7 @@ public class FenceCurved extends Fence {
     public FenceCurved (int correct, int start){
         super(correct, start);
 
-        int[] hue = new int[]{1,2,3,4};
+        int[] hue = new int[]{0,1,2,3};
         super.setDirections(hue);
     }
 
