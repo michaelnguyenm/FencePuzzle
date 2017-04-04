@@ -2,10 +2,10 @@ package mlt.fencepuzzle;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.app.AlertDialog;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -28,6 +28,9 @@ public class GameActivity extends AppCompatActivity {
     private Puzzle mPuzzle;
     private Level mLevel;
 
+    private MediaPlayer mpBackground;
+    private MediaPlayer mpSound;
+
     // Settings
     private static int SETTINGS_REQUEST = 0;
 
@@ -41,6 +44,18 @@ public class GameActivity extends AppCompatActivity {
 
         // Get settings first
         setInstanceVarsFromSharedPrefs();
+
+        // Background color
+        setColor();
+
+        // Background music
+        mpBackground = MediaPlayer.create(this, R.raw.game_music);
+        mpBackground.setLooping(true);
+        playMusic();
+
+        // Sound effects
+        mpSound = MediaPlayer.create(this, R.raw.test_click_short);
+
         // Now draw views
         // Aye aye, captain Michael! :D
 
@@ -55,7 +70,31 @@ public class GameActivity extends AppCompatActivity {
         mBoardView.setPuzzle(mPuzzle);
         mBoardView.setOnTouchListener(mTouchListener);
         startNewGame();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        playMusic();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopMusic();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        stopMusic();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mpBackground.stop();
+        mpBackground.release();
     }
 
     public Fence getFenceAt(int index){
@@ -72,20 +111,29 @@ public class GameActivity extends AppCompatActivity {
         public boolean onTouch(View v, MotionEvent event) {
             Log.d(TAG, "In GameActivity. method mTouchListener. isCorrect: "+mPuzzle.isCorrect());
             if(!mPuzzle.isCorrect()) {
-
                 int col = (int) event.getX() / mBoardView.getBoardFenceWidth();
                 int row = (int) event.getY() / mBoardView.getBoardFenceWidth();
                 int pos = row * 8 + col;
-                if(pos<=64){
-                Log.d(TAG, "In GameActivity. method mTouchListener. Pos: " +pos);
-                mPuzzle.movePiece(pos);
-                //rotate and redraw
-                mBoardView.invalidate();
-                //check correct, if so, toast!
-                if (mPuzzle.isCorrect()) {
-                    //toast
-                    Toast.makeText(getApplicationContext(), "You did it! Go BACK and try another level!", Toast.LENGTH_LONG).show();
-                }}
+                // Ensure that presses are within the board view
+                if (pos <= 64) {
+                    // Play sound
+                    if(mSoundOn) {
+                        if(mpSound.isPlaying()) {
+                            mpSound.seekTo(0);
+                        }
+                        mpSound.start();
+                    }
+                    //TODO: Do haptic feedback?
+                    Log.d(TAG, "In GameActivity. method mTouchListener. Pos: " +pos);
+                    mPuzzle.movePiece(pos);
+                    //rotate and redraw
+                    mBoardView.invalidate();
+                    //check correct, if so, toast!
+                    if (mPuzzle.isCorrect()) {
+                        //toast
+                        Toast.makeText(getApplicationContext(), "You did it! Go BACK and try another level!", Toast.LENGTH_LONG).show();
+                    }
+                }
             }
             return false;
         }
@@ -95,6 +143,8 @@ public class GameActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == SETTINGS_REQUEST) {
             setInstanceVarsFromSharedPrefs();
+            playMusic();
+            setColor();
         }
     }
 
@@ -131,5 +181,32 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void setGameActivity(BoardView boardView) {
+    }
+
+    private void playMusic() {
+        if(mMusicOn) {
+            mpBackground.start();
+        }
+    }
+
+    private void stopMusic() {
+        if(mMusicOn) {
+            mpBackground.pause();
+        }
+    }
+
+    private void setColor() {
+        CoordinatorLayout cl = (CoordinatorLayout)findViewById(R.id.gameLayout);
+        switch(mTheme) {
+            case 0:
+                cl.setBackgroundColor(Color.WHITE);
+                break;
+            case 1:
+                cl.setBackgroundColor(Color.BLACK);
+                break;
+            default:
+                cl.setBackgroundColor(Color.WHITE);
+                break;
+        }
     }
 }

@@ -15,7 +15,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="Appearance">
+        android:title="Game Appearance">
         <ListPreference
             android:key="theme_option"
             android:title="Theme"

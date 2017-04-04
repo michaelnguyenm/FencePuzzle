@@ -1,6 +1,8 @@
 package mlt.fencepuzzle;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,12 +40,55 @@ public class LevelSelectorActivity extends AppCompatActivity {
             ,6,5,6,5,6,5}
     };
 
-    private static final String TAG = "LevelSelect";
+    // Logging
+    private static final String TAG = "Debug: LevelActivity";
+
+    // Controls sound and music
+    private boolean mMusicOn;
+    private boolean mSoundOn;
+
+    // Settings
+    private static int SETTINGS_REQUEST = 0;
+
+    // MediaPlayer
+    private MediaPlayer mp;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_selector);
+        setInstanceVarsFromSharedPrefs();
+
+        mp = MediaPlayer.create(this, R.raw.level_music);
+        mp.setLooping(true);
+        playMusic();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setInstanceVarsFromSharedPrefs();
+        playMusic();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopMusic();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        stopMusic();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mp.stop();
+        mp.release();
     }
 
     public void selectLevel(View view){
@@ -59,5 +104,27 @@ public class LevelSelectorActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void setInstanceVarsFromSharedPrefs() {
+        SharedPreferences sharedPref = getSharedPreferences("FencePuzzle", MODE_PRIVATE);
+        mSoundOn = sharedPref.getBoolean("sound", true);
+        //mTheme = sharedPref.getString("theme_option", getString(R.string.white));
+        mMusicOn = sharedPref.getBoolean("music", true);
 
+
+        Log.d(TAG, "Sound is: " + mSoundOn);
+        //Log.d(TAG, "Theme is: " + mTheme);
+        Log.d(TAG, "Music is: " + mMusicOn);
+    }
+
+    private void playMusic() {
+        if(mMusicOn) {
+            mp.start();
+        }
+    }
+
+    private void stopMusic() {
+        if(mMusicOn) {
+            mp.pause();
+        }
+    }
 }
