@@ -155,7 +155,7 @@ public class Level {
 
         info.add(pieces);
         info.add(correct);
-        info.add(start);
+        info.add(correct);
         return info;
     }
 
