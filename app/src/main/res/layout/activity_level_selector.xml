@@ -147,7 +147,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="9"
-            android:onClick="selectLevel">
+            android:onClick="selectLevelOne">
         </Button>
         <Button
             android:id="@+id/hard_2"

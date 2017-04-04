@@ -66,8 +66,8 @@ public class BoardView extends View{
 
         mBlank = BitmapFactory.decodeResource(getResources(), R.drawable.tile_blank);
         mStraight = BitmapFactory.decodeResource(getResources(), R.drawable.tile_straight);
-        mCurved = BitmapFactory.decodeResource(getResources(), R.drawable.tile_curved1);
-        mDouble = BitmapFactory.decodeResource(getResources(), R.drawable.tile_double);
+        mCurved = BitmapFactory.decodeResource(getResources(), R.drawable.tile_curved2);
+        mDouble = BitmapFactory.decodeResource(getResources(), R.drawable.tile_double2);
 
     }
 
@@ -98,8 +98,8 @@ public class BoardView extends View{
             // Define the boundaries of a destination rectangle for the image
             drawingRect.left = col * fenceWidth; // x coordinate of left side of rect
             drawingRect.top = row * fenceWidth; // y coordinate of top of rect
-            drawingRect.right = drawingRect.left + fenceWidth; // x coordinate of right side of rect
-            drawingRect.bottom = drawingRect.top + fenceWidth; // y coordinate of bottom of rect
+            drawingRect.right = drawingRect.left + fenceWidth -2; // x coordinate of right side of rect
+            drawingRect.bottom = drawingRect.top + fenceWidth -2; // y coordinate of bottom of rect
 
             Fence temp = mPuzzle.getFenceAt(i);
 //            Log.d(TAG, "In BoardView. temp.getFenceType:" +  temp.getFenceType());
@@ -160,6 +160,7 @@ public class BoardView extends View{
         matrix.postRotate(angle);
         return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
+
 
 
 }

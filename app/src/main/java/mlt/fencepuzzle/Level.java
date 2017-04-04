@@ -1,5 +1,7 @@
 package mlt.fencepuzzle;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -28,7 +30,7 @@ public class Level {
 
 //        readJSON();
 
-        ArrayList<int[]> info = getPuzzleInfo(levelID);
+        ArrayList<int[]> info = getPuzzleInfo(levelIDin);
         levelID = levelIDin;
         size = info.get(0).length;
         puzzle = createPuzzle(info.get(0), info.get(1), info.get(2));
@@ -47,11 +49,16 @@ public class Level {
     public ArrayList<int[]> getPuzzleInfo(int levelID){
         //TODO: change so that you actually read
         ArrayList<int[]> info = new ArrayList<>();
+        int[] pieces = {};
+        int[] correct = {};
+        int[] start = {};
+        Log.d(TAG, "Level id in Level.java is:" + levelID);
+
 //        int[] pieces = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 //        int[] correct = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 //        int[] start = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-
-        int[] pieces = {0,0,0,0,0,0,0,0,
+        if(levelID ==1){
+        pieces =new int[] {0,0,0,0,0,0,0,0,
                 0,0,0,0,0,0,0,0,
                 0,0,0,0,0,0,0,0,
                 0,0,0,2,2,0,0,0,
@@ -59,7 +66,7 @@ public class Level {
                 0,0,0,0,0,0,0,0,
                 0,0,0,0,0,0,0,0,
                 0,0,0,0,0,0,0,0};
-        int[] correct = {0,0,0,0,0,0,0,0,
+        correct = new int[] {0,0,0,0,0,0,0,0,
                 0,0,0,0,0,0,0,0,
                 0,0,0,0,0,0,0,0,
                 0,0,0,1,2,0,0,0,
@@ -67,14 +74,43 @@ public class Level {
                 0,0,0,0,0,0,0,0,
                 0,0,0,0,0,0,0,0,
                 0,0,0,0,0,0,0,0};
-        int[] start = {0,0,0,0,0,0,0,0,
+        start = new int[] {0,0,0,0,0,0,0,0,
                 0,0,0,0,0,0,0,0,
                 0,0,0,0,0,0,0,0,
                 0,0,0,2,2,0,0,0,
                 0,0,0,2,2,0,0,0,
                 0,0,0,0,0,0,0,0,
                 0,0,0,0,0,0,0,0,
-                0,0,0,0,0,0,0,0};
+                0,0,0,0,0,0,0,0};}
+
+        if(levelID ==9){
+            pieces = new int[]
+                    {2,2,2,1,2,2,2,0,
+                    2,3,3,1,2,2,3,2,
+                    0,2,3,1,2,2,3,2,
+                    2,1,3,1,3,2,2,2,
+                    2,2,1,0,1,2,1,2,
+                    0,2,3,2,2,3,2,0,
+                    2,1,3,3,2,1,2,2,
+                    2,1,2,2,2,2,1,2};
+            correct = new int[]
+                    {1,2,1,1,2,1,2,0,
+                    0,0,1,1,3,0,0,2,
+                    0,0,0,1,2,1,1,3,
+                    1,1,1,1,0,3,0,2,
+                    0,2,0,0,0,1,1,3,
+                    0,0,0,2,0,0,2,0,
+                    1,1,1,0,2,0,0,2,
+                    0,1,3,0,3,0,1,3};
+            start = new int[]
+                    {0,0,0,0,0,0,0,0,
+                    0,0,0,0,0,0,0,0,
+                    0,0,0,0,0,0,0,0,
+                    0,0,0,0,0,0,0,0,
+                    0,0,0,0,0,0,0,0,
+                    0,0,0,0,0,0,0,0,
+                    0,0,0,0,0,0,0,0,
+                    0,0,0,0,0,0,0,0};}
 
         info.add(pieces);
         info.add(correct);

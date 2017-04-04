@@ -47,6 +47,7 @@ public class GameActivity extends AppCompatActivity {
         //***
         Intent myIntent = getIntent(); // gets the previously created intent
         int levelID = myIntent.getIntExtra("levelID", -1); // fetches level id from LevelSelectorActivity
+        Log.d(TAG, "In GameActivity, intent extra is: " + levelID);
         mBoardView = (BoardView) findViewById(R.id.boardView);
         mLevel = new Level(levelID);
         mPuzzle = mLevel.puzzle;
@@ -75,6 +76,7 @@ public class GameActivity extends AppCompatActivity {
                 int col = (int) event.getX() / mBoardView.getBoardFenceWidth();
                 int row = (int) event.getY() / mBoardView.getBoardFenceWidth();
                 int pos = row * 8 + col;
+                if(pos<=64){
                 Log.d(TAG, "In GameActivity. method mTouchListener. Pos: " +pos);
                 mPuzzle.movePiece(pos);
                 //rotate and redraw
@@ -83,7 +85,7 @@ public class GameActivity extends AppCompatActivity {
                 if (mPuzzle.isCorrect()) {
                     //toast
                     Toast.makeText(getApplicationContext(), "You did it! Go BACK and try another level!", Toast.LENGTH_LONG).show();
-                }
+                }}
             }
             return false;
         }
