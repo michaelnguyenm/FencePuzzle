@@ -1,5 +1,7 @@
 package mlt.fencepuzzle;
 
+import android.content.Context;
+
 /**
  * Created by Laura Yu on 3/29/2017.
  */
@@ -14,8 +16,8 @@ public class FencePuzzleGame {
 
     private Level level;
 
-    public FencePuzzleGame(int levelID){
-        level = new Level(levelID);
+    public FencePuzzleGame(Context context, int levelID){
+        level = new Level(context, levelID);
         turns =0;
     }
 

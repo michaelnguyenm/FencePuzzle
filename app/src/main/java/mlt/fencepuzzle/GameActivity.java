@@ -64,7 +64,7 @@ public class GameActivity extends AppCompatActivity {
         int levelID = myIntent.getIntExtra("levelID", -1); // fetches level id from LevelSelectorActivity
         Log.d(TAG, "In GameActivity, intent extra is: " + levelID);
         mBoardView = (BoardView) findViewById(R.id.boardView);
-        mLevel = new Level(levelID);
+        mLevel = new Level(this, levelID);
         mPuzzle = mLevel.puzzle;
         mBoardView.setLevel(mLevel);
         mBoardView.setPuzzle(mPuzzle);

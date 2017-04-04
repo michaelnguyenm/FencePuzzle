@@ -47,7 +47,7 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:text="2"
-            android:onClick="selectLevel">
+            android:onClick="selectLevelOne">
         </Button>
         <Button
             android:id="@+id/easy_3"
@@ -57,7 +57,7 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:text="3"
-            android:onClick="selectLevel">
+            android:onClick="selectLevelOne">
         </Button>
         <Button
             android:id="@+id/easy_4"
@@ -66,7 +66,7 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:text="4"
-            android:onClick="selectLevel">
+            android:onClick="selectLevelOne">
         </Button>
     </RelativeLayout>
 
@@ -92,7 +92,7 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:text="5"
-            android:onClick="selectLevel">
+            android:onClick="selectLevelOne">
         </Button>
         <Button
             android:id="@+id/medium_2"
@@ -102,7 +102,7 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:text="6"
-            android:onClick="selectLevel">
+            android:onClick="selectLevelOne">
         </Button>
         <Button
             android:id="@+id/medium_3"
@@ -112,7 +112,7 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:text="7"
-            android:onClick="selectLevel">
+            android:onClick="selectLevelOne">
         </Button>
         <Button
             android:id="@+id/medium_4"
@@ -121,7 +121,7 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:text="8"
-            android:onClick="selectLevel">
+            android:onClick="selectLevelOne">
         </Button>
     </RelativeLayout>
 
@@ -157,7 +157,7 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:text="10"
-            android:onClick="selectLevel">
+            android:onClick="selectLevelOne">
         </Button>
         <Button
             android:id="@+id/hard_3"
@@ -167,7 +167,7 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:text="11"
-            android:onClick="selectLevel">
+            android:onClick="selectLevelOne">
         </Button>
         <Button
             android:id="@+id/hard_4"
@@ -176,7 +176,7 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:text="12"
-            android:onClick="selectLevel">
+            android:onClick="selectLevelOne">
         </Button>
     </RelativeLayout>
 
