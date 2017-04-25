@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<android.support.percent.PercentRelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context="mlt.fencepuzzle.WelcomeActivity">
+        android:orientation="vertical">
 
     <TextView
+        android:id="@+id/FencePuzzleText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -16,24 +17,39 @@
         android:paddingBottom="100dp"/>
 
     <Button
-        android:layout_width="200dp"
+        android:id="@+id/StartButton"
+        app:layout_widthPercent="60%"
+        app:layout_heightPercent="9%"
+        app:layout_marginPercent="1%"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:text="@string/start_game"
-        android:onClick="chooseLevel"/>
+        android:textSize="18sp"
+        android:onClick="chooseLevel"
+        android:layout_below="@+id/FencePuzzleText"
+        android:layout_centerHorizontal="true" />
 
     <Button
-        android:layout_width="200dp"
+        android:id="@+id/InstructionsButton"
+        app:layout_widthPercent="60%"
+        app:layout_heightPercent="9%"
+        app:layout_marginPercent="1%"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:text="@string/instructions"
-        android:onClick="viewInstructions"/>
+        android:textSize="18sp"
+        android:onClick="viewInstructions"
+        android:layout_below="@+id/StartButton"
+        android:layout_centerHorizontal="true" />
 
     <Button
-        android:layout_width="200dp"
+        android:id="@+id/SettingsButton"
+        app:layout_widthPercent="60%"
+        app:layout_heightPercent="9%"
+        app:layout_marginPercent="1%"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:text="@string/options"
-        android:onClick="changeSettings"/>
+        android:textSize="18sp"
+        android:onClick="changeSettings"
+        android:layout_below="@+id/InstructionsButton"
+        android:layout_centerHorizontal="true" />
 
-</LinearLayout>
+</android.support.percent.PercentRelativeLayout>
