@@ -15,7 +15,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="Game Appearance">
+        android:title="Game Settings">
         <ListPreference
             android:key="theme_option"
             android:title="Theme"
@@ -23,5 +23,10 @@
             android:defaultValue="@string/white"
             android:entries="@array/theme_options"
             android:entryValues="@array/theme_options"/>
+        <CheckBoxPreference
+            android:key="vibration"
+            android:title="Vibration"
+            android:defaultValue="true"
+            android:summary="Turn the vibration on or off for puzzle taps" />
     </PreferenceCategory>
 </PreferenceScreen>

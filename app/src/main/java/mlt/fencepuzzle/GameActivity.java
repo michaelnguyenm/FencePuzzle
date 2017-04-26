@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -21,12 +22,15 @@ public class GameActivity extends AppCompatActivity {
     // Settings member variables
     private boolean mMusicOn;
     private boolean mSoundOn;
+    private boolean mVibration;
     private int mTheme;
 
     // I think we need these??? ;w;
     private BoardView mBoardView;
     private Puzzle mPuzzle;
     private Level mLevel;
+
+    private Vibrator mVibrator;
 
     private MediaPlayer mpBackground;
     private MediaPlayer mpSound;
@@ -55,6 +59,9 @@ public class GameActivity extends AppCompatActivity {
 
         // Sound effects
         mpSound = MediaPlayer.create(this, R.raw.test_click_short);
+
+        // Vibrator
+        mVibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
         // Now draw views
         // Aye aye, captain Michael! :D
@@ -123,7 +130,12 @@ public class GameActivity extends AppCompatActivity {
                         }
                         mpSound.start();
                     }
-                    //TODO: Do haptic feedback?
+                    // Do haptic feedback
+                    if(mVibration) {
+                        mVibrator.cancel();
+                        mVibrator.vibrate(1);
+                    }
+
                     Log.d(TAG, "In GameActivity. method mTouchListener. Pos: " +pos);
                     mPuzzle.movePiece(pos);
                     //rotate and redraw
@@ -174,10 +186,12 @@ public class GameActivity extends AppCompatActivity {
         }
 
         mMusicOn = sharedPref.getBoolean("music", true);
+        mVibration = sharedPref.getBoolean("vibration", true);
 
         Log.d(TAG, "Sound is: " + mSoundOn);
         Log.d(TAG, "Theme is: " + mTheme + ": " + themeName);
         Log.d(TAG, "Music is: " + mMusicOn);
+        Log.d(TAG, "Vibration is: " + mVibration);
     }
 
     public void setGameActivity(BoardView boardView) {
