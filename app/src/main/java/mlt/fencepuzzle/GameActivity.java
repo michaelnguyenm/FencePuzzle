@@ -1,5 +1,6 @@
 package mlt.fencepuzzle;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -12,6 +13,10 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
+
+import com.plattysoft.leonids.ParticleSystem;
+
+import static mlt.fencepuzzle.R.drawable.confetti;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -132,6 +137,11 @@ public class GameActivity extends AppCompatActivity {
                     if (mPuzzle.isCorrect()) {
                         //toast
                         Toast.makeText(getApplicationContext(), "You did it! Go BACK and try another level!", Toast.LENGTH_LONG).show();
+
+                        //particles
+                        new ParticleSystem((Activity) v.getContext(), 30, confetti, 10000)
+                                .setSpeedRange(0.2f, 0.5f)
+                                .oneShot(v, 30);
                     }
                 }
             }
