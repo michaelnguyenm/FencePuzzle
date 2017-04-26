@@ -65,9 +65,9 @@ public class BoardView extends View{
         mPaint.setStrokeWidth(6);
 
         mBlank = BitmapFactory.decodeResource(getResources(), R.drawable.tile_blank);
-        mStraight = BitmapFactory.decodeResource(getResources(), R.drawable.tile_straight);
-        mCurved = BitmapFactory.decodeResource(getResources(), R.drawable.tile_curved2);
-        mDouble = BitmapFactory.decodeResource(getResources(), R.drawable.tile_double2);
+        mStraight = BitmapFactory.decodeResource(getResources(), R.drawable.straight_final);
+        mCurved = BitmapFactory.decodeResource(getResources(), R.drawable.curved_final);
+        mDouble = BitmapFactory.decodeResource(getResources(), R.drawable.double_final);
 
     }
 
