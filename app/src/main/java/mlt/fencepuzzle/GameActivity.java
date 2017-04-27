@@ -149,11 +149,12 @@ public class GameActivity extends AppCompatActivity {
                     //check correct, if so, toast!
                     if (mPuzzle.isCorrect()) {
                         //toast
-                        Toast.makeText(getApplicationContext(), "You did it! Go BACK and try another level!", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), "You did it! Go BACK and try another level!", Toast.LENGTH_LONG).show();
                         //Fragment
                         FragmentManager fm = getFragmentManager();
                         WinDialogFragment winDialogFragment = new WinDialogFragment();
                         winDialogFragment.show(fm, "win");
+                        //winDialogFragment.getDialog().setCanceledOnTouchOutside(false);
                         //Particles
                         new ParticleSystem((Activity) v.getContext(), 30, confetti, 10000)
                                 .setSpeedRange(0.2f, 0.5f)
