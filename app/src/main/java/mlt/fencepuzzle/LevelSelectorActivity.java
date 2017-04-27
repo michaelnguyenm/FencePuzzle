@@ -3,13 +3,41 @@ package mlt.fencepuzzle;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
+import android.support.percent.PercentRelativeLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 public class LevelSelectorActivity extends AppCompatActivity {
+
+//    Button[] buttons = {(Button) this.findViewById(R.id.level_01),
+//            (Button) this.findViewById(R.id.level_02),
+//            (Button) this.findViewById(R.id.level_03),
+//            (Button) this.findViewById(R.id.level_04),
+//            (Button) this.findViewById(R.id.level_05),
+//            (Button) this.findViewById(R.id.level_06),
+//            (Button) this.findViewById(R.id.level_07),
+//            (Button) this.findViewById(R.id.level_08),
+//            (Button) this.findViewById(R.id.level_09),
+//            (Button) this.findViewById(R.id.level_10),
+//            (Button) this.findViewById(R.id.level_11),
+//            (Button) this.findViewById(R.id.level_12)};
+    int[] ids = {R.id.level_01,
+            R.id.level_02,
+            R.id.level_03,
+            R.id.level_04,
+            R.id.level_05,
+            R.id.level_06,
+            R.id.level_07,
+            R.id.level_08,
+            R.id.level_09,
+            R.id.level_10,
+            R.id.level_11,
+            R.id.level_12
+    };
 
     int[][] levels = {
             /*Easy*/
@@ -111,6 +139,55 @@ public class LevelSelectorActivity extends AppCompatActivity {
         mSoundOn = sharedPref.getBoolean("sound", true);
         //mTheme = sharedPref.getString("theme_option", getString(R.string.white));
         mMusicOn = sharedPref.getBoolean("music", true);
+
+        for (int x : ids){
+            Button b = (Button) this.findViewById(x);
+            String sTag = b.getTag().toString();
+            int lastScore = sharedPref.getInt(sTag, 0);
+                Log.d(TAG, "************************setInstanceVarsFromSharedPrefs: lastScore: "+lastScore);
+            Log.d(TAG, "************************setInstanceVarsFromSharedPrefs: Tag: "+sTag);
+
+            if (lastScore<=0){
+                    b.setText(sTag);
+                }
+                else
+                    b.setText("♕");
+        }
+
+
+//        PercentRelativeLayout layout = (PercentRelativeLayout) this.findViewById(R.id.levelLayout);
+//
+//        for (int i = 0; i < layout.getChildCount(); i++) {
+//            View v = layout.getChildAt(i);
+//            Log.d(TAG, "************************setInstanceVarsFromSharedPrefs: View: ");
+//
+//            if (v instanceof Button) {
+//                //validate your EditText here
+//                Button b = (Button) v;
+//                String sTag = v.getTag().toString();
+//                int iTag = Integer.parseInt(b.getTag().toString());
+//                int lastScore = sharedPref.getInt(sTag, -1);
+//                Log.d(TAG, "************************setInstanceVarsFromSharedPrefs: lastScore: "+lastScore);
+//                if (lastScore<=0){
+//                    b.setText(sTag);
+//                }
+//                else
+//                    b.setText("♕");
+//            }
+//        }
+
+//        String id = "R.id.level_04";
+//        Button b = (Button)findViewById(R.id.level_04);
+//        Log.d(TAG, "setInstanceVarsFromSharedPrefs: "+b.getTag());
+//        for (int i=1; i<13; i++){
+//            Button b = (Button) view.findViewWithTag(i+"");
+//            Log.d(TAG, "setInstanceVarsFromSharedPrefs: "+b.getTag());
+////            int lastScore = sharedPref.getInt(i+"", i);
+////            if(lastScore<=0)
+////                b.setText(i+"");
+////            else
+////                b.setText("♕");
+//        }
 
 
         Log.d(TAG, "Sound is: " + mSoundOn);
