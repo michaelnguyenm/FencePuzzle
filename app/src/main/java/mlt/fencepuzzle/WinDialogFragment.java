@@ -5,6 +5,9 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.Window;
+import android.view.WindowManager;
 
 /**
  * Created by megam on 4/27/2017.
@@ -12,6 +15,17 @@ import android.os.Bundle;
 
 public class WinDialogFragment extends DialogFragment {
     int lvl;
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        Window window = getDialog().getWindow();
+        WindowManager.LayoutParams windowParams = window.getAttributes();
+        windowParams.dimAmount = 0.15f;
+        windowParams.flags |= WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+        window.setAttributes(windowParams);
+    }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -25,6 +39,12 @@ public class WinDialogFragment extends DialogFragment {
                             ((GameActivity) getActivity()).nextLevel(lvl + 1);
                         }
                     })
+                    .setNeutralButton("Retry", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dismiss();
+                            ((GameActivity) getActivity()).nextLevel(lvl);
+                        }
+                    })
                     .setNegativeButton("Quit", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             dismiss();
@@ -33,13 +53,30 @@ public class WinDialogFragment extends DialogFragment {
                     });
         } else {
             builder.setMessage("You have finished the last level! Congratulations!")
-                    .setNeutralButton("Quit", new DialogInterface.OnClickListener() {
+                    .setNeutralButton("Retry", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dismiss();
+                            ((GameActivity) getActivity()).nextLevel(lvl);
+                        }
+                    })
+                    .setNegativeButton("Quit", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             dismiss();
                             (getActivity()).finish();
                         }
                     });
         }
+        builder.setOnKeyListener(new Dialog.OnKeyListener() {
+            @Override
+            public boolean onKey(DialogInterface arg0, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    dismiss();
+                    (getActivity()).finish();
+                }
+                return true;
+            }
+        });
+
         return builder.create();
     }
 }
