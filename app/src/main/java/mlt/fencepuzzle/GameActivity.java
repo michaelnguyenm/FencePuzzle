@@ -1,6 +1,7 @@
 package mlt.fencepuzzle;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -149,11 +150,23 @@ public class GameActivity extends AppCompatActivity {
                     if (mPuzzle.isCorrect()) {
                         //toast
                         Toast.makeText(getApplicationContext(), "You did it! Go BACK and try another level!", Toast.LENGTH_LONG).show();
-
-                        //particles
+                        //Fragment
+                        FragmentManager fm = getFragmentManager();
+                        WinDialogFragment winDialogFragment = new WinDialogFragment();
+                        winDialogFragment.show(fm, "win");
+                        //Particles
                         new ParticleSystem((Activity) v.getContext(), 30, confetti, 10000)
                                 .setSpeedRange(0.2f, 0.5f)
                                 .oneShot(v, 30);
+                        //Save result
+                        SharedPreferences sharedPref = getSharedPreferences("FencePuzzle", MODE_PRIVATE);
+                        String currLevel = Integer.toString(getLevel());
+                        int lastScore = sharedPref.getInt(currLevel, -1);
+                        if (lastScore <= 0) {
+                            SharedPreferences.Editor ed = sharedPref.edit();
+                            ed.putInt(currLevel, 1);
+                            ed.apply();
+                        }
                     }
                 }
             }
@@ -205,6 +218,21 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void setGameActivity(BoardView boardView) {
+    }
+
+    public int getLevel () {
+        return mLevel.getLevelID();
+    }
+
+    public void nextLevel (int levelID) {
+        Log.d(TAG, "In GameActivity, loading level: " + levelID);
+        mBoardView = (BoardView) findViewById(R.id.boardView);
+        mLevel = new Level(this, levelID);
+        mPuzzle = mLevel.puzzle;
+        mBoardView.setLevel(mLevel);
+        mBoardView.setPuzzle(mPuzzle);
+        mBoardView.setOnTouchListener(mTouchListener);
+        startNewGame();
     }
 
     private void playMusic() {
