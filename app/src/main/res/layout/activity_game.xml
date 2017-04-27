@@ -1,50 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/gameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="mlt.fencepuzzle.GameActivity">
-
-    <android.support.design.widget.AppBarLayout
+    android:layout_alignParentBottom="true"
+    android:orientation="vertical">
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/gameLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="mlt.fencepuzzle.GameActivity">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
 
-    </android.support.design.widget.AppBarLayout>
-    <!--<mlt.fencepuzzle.BoardView-->
-        <!--android:id="@+id/boardView"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_margin="25dp"/>-->
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    <include layout="@layout/content_game" />
+        </android.support.design.widget.AppBarLayout>
+        <!--<mlt.fencepuzzle.BoardView-->
+            <!--android:id="@+id/boardView"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="25dp"/>-->
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/help"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_gravity="bottom|start"
-        android:layout_margin="32dp"
-        android:onClick="viewInstructions"
-        app:srcCompat="@android:drawable/ic_menu_help" />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/settings"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="32dp"
+            android:onClick="changeSettings"
+            app:srcCompat="@android:drawable/ic_menu_preferences" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/settings"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="32dp"
-        android:onClick="changeSettings"
-        app:srcCompat="@android:drawable/ic_menu_preferences" />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/help"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_gravity="bottom|start"
+            android:layout_margin="32dp"
+            android:onClick="viewInstructions"
+            app:srcCompat="@android:drawable/ic_menu_help" />
 
-</android.support.design.widget.CoordinatorLayout>
+        <TextView
+            android:id="@+id/tap_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="72dp"
+            android:text="@string/tap_title"
+            app:layout_anchor="@+id/include"
+            app:layout_anchorGravity="center|bottom" />
+
+        <TextView
+            android:id="@+id/tap_count"
+            android:layout_width="123dp"
+            android:layout_height="78dp"
+            app:layout_anchor="@+id/include"
+            app:layout_anchorGravity="center|bottom" />
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/content_game" />
+    </android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>
