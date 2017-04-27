@@ -40,7 +40,8 @@
         android:layout_alignParentStart="true">
 
         <Button
-            android:id="@+id/easy_1"
+            android:id="@+id/level_01"
+            android:tag="1"
             android:layout_marginRight="5dp"
             app:layout_widthPercent="15%"
             app:layout_heightPercent="85%"
@@ -49,10 +50,11 @@
             android:onClick="selectLevelOne">
         </Button>
         <Button
-            android:id="@+id/easy_2"
+            android:id="@+id/level_02"
+            android:tag="2"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_toRightOf="@id/easy_1"
+            android:layout_toRightOf="@id/level_01"
             app:layout_widthPercent="15%"
             app:layout_heightPercent="85%"
             android:text="2"
@@ -60,10 +62,11 @@
             android:onClick="selectLevelOne">
         </Button>
         <Button
-            android:id="@+id/easy_3"
+            android:id="@+id/level_03"
+            android:tag="3"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_toRightOf="@id/easy_2"
+            android:layout_toRightOf="@id/level_02"
             app:layout_widthPercent="15%"
             app:layout_heightPercent="85%"
             android:text="3"
@@ -71,9 +74,10 @@
             android:onClick="selectLevelOne">
         </Button>
         <Button
-            android:id="@+id/easy_4"
+            android:id="@+id/level_04"
+            android:tag="4"
             android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/easy_3"
+            android:layout_toRightOf="@id/level_03"
             app:layout_widthPercent="15%"
             app:layout_heightPercent="85%"
             android:text="4"
@@ -107,7 +111,8 @@
         android:layout_alignParentStart="true">
 
         <Button
-            android:id="@+id/medium_1"
+            android:id="@+id/level_05"
+            android:tag="5"
             android:layout_marginRight="5dp"
             app:layout_widthPercent="15%"
             app:layout_heightPercent="85%"
@@ -116,10 +121,11 @@
             android:onClick="selectLevelOne">
         </Button>
         <Button
-            android:id="@+id/medium_2"
+            android:id="@+id/level_06"
+            android:tag="6"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_toRightOf="@id/medium_1"
+            android:layout_toRightOf="@id/level_05"
             app:layout_widthPercent="15%"
             app:layout_heightPercent="85%"
             android:text="6"
@@ -127,10 +133,11 @@
             android:onClick="selectLevelOne">
         </Button>
         <Button
-            android:id="@+id/medium_3"
+            android:id="@+id/level_07"
+            android:tag="7"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_toRightOf="@id/medium_2"
+            android:layout_toRightOf="@id/level_06"
             app:layout_widthPercent="15%"
             app:layout_heightPercent="85%"
             android:text="7"
@@ -138,9 +145,10 @@
             android:onClick="selectLevelOne">
         </Button>
         <Button
-            android:id="@+id/medium_4"
+            android:id="@+id/level_08"
+            android:tag="8"
             android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/medium_3"
+            android:layout_toRightOf="@id/level_07"
             app:layout_widthPercent="15%"
             app:layout_heightPercent="85%"
             android:text="8"
@@ -174,7 +182,8 @@
         android:layout_alignParentStart="true">
 
         <Button
-            android:id="@+id/hard_1"
+            android:id="@+id/level_09"
+            android:tag="9"
             android:layout_marginRight="5dp"
             app:layout_widthPercent="15%"
             app:layout_heightPercent="85%"
@@ -183,10 +192,11 @@
             android:onClick="selectLevelOne">
         </Button>
         <Button
-            android:id="@+id/hard_2"
+            android:id="@+id/level_10"
+            android:tag="10"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_toRightOf="@id/hard_1"
+            android:layout_toRightOf="@id/level_09"
             app:layout_widthPercent="15%"
             app:layout_heightPercent="85%"
             android:text="10"
@@ -194,10 +204,11 @@
             android:onClick="selectLevelOne">
         </Button>
         <Button
-            android:id="@+id/hard_3"
+            android:id="@+id/level_11"
+            android:tag="11"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_toRightOf="@id/hard_2"
+            android:layout_toRightOf="@id/level_10"
             app:layout_widthPercent="15%"
             app:layout_heightPercent="85%"
             android:text="11"
@@ -205,9 +216,10 @@
             android:onClick="selectLevelOne">
         </Button>
         <Button
-            android:id="@+id/hard_4"
+            android:id="@+id/level_12"
+            android:tag="12"
             android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/hard_3"
+            android:layout_toRightOf="@id/level_11"
             app:layout_widthPercent="15%"
             app:layout_heightPercent="85%"
             android:text="12"
