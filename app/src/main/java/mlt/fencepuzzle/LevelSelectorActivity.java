@@ -99,8 +99,10 @@ public class LevelSelectorActivity extends AppCompatActivity {
     public void selectLevelOne(View view) {
         Button b = (Button) view;
         Intent intent = new Intent(this, GameActivity.class);
-        intent.putExtra("levelID", Integer.parseInt(b.getText().toString()));
-        Log.d(TAG, "LEVEL ID SELECTED: " + Integer.parseInt(b.getText().toString()));
+//        intent.putExtra("levelID", Integer.parseInt(b.getText().toString()));
+
+        intent.putExtra("levelID", Integer.parseInt(b.getTag().toString()));
+        Log.d(TAG, "LEVEL ID SELECTED: " + Integer.parseInt(b.getTag().toString()));
         startActivity(intent);
     }
 
