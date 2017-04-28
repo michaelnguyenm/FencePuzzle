@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.plattysoft.leonids.ParticleSystem;
@@ -30,6 +31,7 @@ public class GameActivity extends AppCompatActivity {
     private boolean mSoundOn;
     private boolean mVibration;
     private int mTheme;
+    private int tapCount;
 
     // I think we need these??? ;w;
     private BoardView mBoardView;
@@ -75,6 +77,8 @@ public class GameActivity extends AppCompatActivity {
         //***
         Intent myIntent = getIntent(); // gets the previously created intent
         int levelID = myIntent.getIntExtra("levelID", -1); // fetches level id from LevelSelectorActivity
+        //Michael set shared preferences here
+        tapCount = 0;
         Log.d(TAG, "In GameActivity, intent extra is: " + levelID);
         mBoardView = (BoardView) findViewById(R.id.boardView);
         mLevel = new Level(this, levelID);
@@ -115,6 +119,9 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void startNewGame() {
+        tapCount=0;
+        TextView textView = (TextView) findViewById(R.id.tap_count);
+        textView.setText(Integer.toString(tapCount));
         mPuzzle.resetPositions();
         mBoardView.invalidate();
         //TODO: reset a 'turns' counter
@@ -129,6 +136,10 @@ public class GameActivity extends AppCompatActivity {
                 int pos = row * 8 + col;
                 // Ensure that presses are within the board view
                 if (pos <= 64) {
+                    //Confirmed that puzzle is still not solved and click is within board
+                    tapCount++;
+                    TextView textView = (TextView) findViewById(R.id.tap_count);
+                    textView.setText(Integer.toString(tapCount));
                     // Play sound
                     if(mSoundOn) {
                         if(mpSound.isPlaying()) {

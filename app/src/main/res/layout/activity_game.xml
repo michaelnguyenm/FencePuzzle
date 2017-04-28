@@ -57,14 +57,20 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="72dp"
             android:text="@string/tap_title"
+            android:textSize="20sp"
+            android:textColor="@color/textBlack"
             app:layout_anchor="@+id/include"
             app:layout_anchorGravity="center|bottom" />
 
         <TextView
             android:id="@+id/tap_count"
-            android:layout_width="123dp"
-            android:layout_height="78dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_anchor="@+id/include"
+            android:layout_marginBottom="32dp"
+            android:text="0"
+            android:textSize="20sp"
+            android:textColor="@color/textBlack"
             app:layout_anchorGravity="center|bottom" />
 
         <include
