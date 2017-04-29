@@ -28,5 +28,8 @@
             android:title="Vibration"
             android:defaultValue="true"
             android:summary="Turn the vibration on or off for puzzle taps" />
+        <Preference
+            android:key="reset_game"
+            android:title="Reset all records" />
     </PreferenceCategory>
 </PreferenceScreen>

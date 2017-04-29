@@ -110,6 +110,14 @@ public class GameActivity extends AppCompatActivity {
         setInstanceVarsFromSharedPrefs();
     }
 
+    private void startNewGame() {
+        mTapCount = 0;
+        TextView textView = (TextView) findViewById(R.id.tap_count);
+        textView.setText(Integer.toString(mTapCount));
+        mPuzzle.resetPositions();
+        mBoardView.invalidate();
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -135,16 +143,15 @@ public class GameActivity extends AppCompatActivity {
         mpBackground.release();
     }
 
-    public Fence getFenceAt(int index){
-        return mPuzzle.getFenceAt(index);
+    @Override
+    public void onBackPressed() {
+        FragmentManager fm = getFragmentManager();
+        BackWarningFragment backDialogFragment = new BackWarningFragment();
+        backDialogFragment.show(fm, "backWarning");
     }
 
-    private void startNewGame() {
-        mTapCount = 0;
-        TextView textView = (TextView) findViewById(R.id.tap_count);
-        textView.setText(Integer.toString(mTapCount));
-        mPuzzle.resetPositions();
-        mBoardView.invalidate();
+    public Fence getFenceAt(int index){
+        return mPuzzle.getFenceAt(index);
     }
 
     private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
@@ -183,7 +190,6 @@ public class GameActivity extends AppCompatActivity {
                         FragmentManager fm = getFragmentManager();
                         WinDialogFragment winDialogFragment = new WinDialogFragment();
                         winDialogFragment.show(fm, "win");
-                        //winDialogFragment.getDialog().setCanceledOnTouchOutside(false);
                         //Particles
                         new ParticleSystem((Activity) v.getContext(), 30, confetti, 10000)
                                 .setSpeedRange(0.2f, 0.5f)

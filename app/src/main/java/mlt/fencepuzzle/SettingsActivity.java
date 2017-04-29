@@ -1,5 +1,6 @@
 package mlt.fencepuzzle;
 
+import android.app.FragmentManager;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -17,6 +18,15 @@ public class SettingsActivity extends AppCompatActivity {
                 .commit();
     }
 
+    public void resetAllScores() {
+        SharedPreferences sharedPref = getSharedPreferences("FencePuzzle", MODE_PRIVATE);
+        SharedPreferences.Editor ed = sharedPref.edit();
+        for(int i = 1; i <= 12; i++) {
+            ed.putInt(Integer.toString(i), -1);
+            ed.apply();
+        }
+    }
+
     public static class SettingsFragment extends PreferenceFragment {
 
         private SharedPreferences sharedPrefs;
@@ -32,8 +42,7 @@ public class SettingsActivity extends AppCompatActivity {
 
             updateThemeSummary();
             setThemeListener();
-
-            //setResetListener();
+            setResetListener();
         }
 
         private void setThemeListener() {
@@ -62,10 +71,17 @@ public class SettingsActivity extends AppCompatActivity {
             Preference themeMessagePref = findPreference("theme_option");
             themeMessagePref.setSummary(themeSummary);
         }
-/*
+
         private void setResetListener() {
-            final Preference resetPref = findPreference("reset_option");
+            Preference myPref = findPreference("reset_game");
+            myPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                public boolean onPreferenceClick(Preference preference) {
+                    FragmentManager fm = getFragmentManager();
+                    ResetDialogFragment resetDialogFragment = new ResetDialogFragment();
+                    resetDialogFragment.show(fm, "reset");
+                    return true;
+                }
+            });
         }
-        */
     }
 }
