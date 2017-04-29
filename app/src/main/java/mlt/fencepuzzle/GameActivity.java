@@ -204,6 +204,10 @@ public class GameActivity extends AppCompatActivity {
         startActivityForResult(intent, SETTINGS_REQUEST);
     }
 
+    public void resetGame(View view) {
+        loadLevel(getLevel());
+    }
+
     private void setInstanceVarsFromSharedPrefs() {
         SharedPreferences sharedPref = getSharedPreferences("FencePuzzle", MODE_PRIVATE);
         mSoundOn = sharedPref.getBoolean("sound", true);

@@ -36,4 +36,5 @@
 
     <!--tap title-->
     <string name="tap_title">Taps:</string>
+    <string name="reset">Reset</string>
 </resources>
