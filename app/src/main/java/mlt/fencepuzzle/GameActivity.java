@@ -12,6 +12,9 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -73,6 +76,24 @@ public class GameActivity extends AppCompatActivity {
 
         // Vibrator
         mVibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        super.onCreateOptionsMenu(menu);
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch(item.getItemId()) {
+            case R.id.reset_game:
+                loadLevel(getLevel());
+                return true;
+            default:
+                return false;
+        }
     }
 
     public void loadLevel(int levelID) {
@@ -202,10 +223,6 @@ public class GameActivity extends AppCompatActivity {
     public void changeSettings(View view) {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivityForResult(intent, SETTINGS_REQUEST);
-    }
-
-    public void resetGame(View view) {
-        loadLevel(getLevel());
     }
 
     private void setInstanceVarsFromSharedPrefs() {
