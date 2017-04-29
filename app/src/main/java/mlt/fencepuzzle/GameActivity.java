@@ -15,7 +15,6 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.plattysoft.leonids.ParticleSystem;
 
@@ -31,7 +30,8 @@ public class GameActivity extends AppCompatActivity {
     private boolean mSoundOn;
     private boolean mVibration;
     private int mTheme;
-    private int tapCount;
+    private int mTapCount;
+    private int mPrevCount;
 
     // I think we need these??? ;w;
     private BoardView mBoardView;
@@ -54,8 +54,11 @@ public class GameActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // Get settings first
-        setInstanceVarsFromSharedPrefs();
+        mTapCount = 0;
+        // Load level
+        Intent myIntent = getIntent(); // gets the previously created intent
+        int levelID = myIntent.getIntExtra("levelID", -1); // fetches level id from LevelSelectorActivity
+        loadLevel(levelID);
 
         // Background color
         setColor();
@@ -70,16 +73,10 @@ public class GameActivity extends AppCompatActivity {
 
         // Vibrator
         mVibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+    }
 
-        // Now draw views
-        // Aye aye, captain Michael! :D
-
-        //***
-        Intent myIntent = getIntent(); // gets the previously created intent
-        int levelID = myIntent.getIntExtra("levelID", -1); // fetches level id from LevelSelectorActivity
-        //Michael set shared preferences here
-        tapCount = 0;
-        Log.d(TAG, "In GameActivity, intent extra is: " + levelID);
+    public void loadLevel(int levelID) {
+        Log.d(TAG, "In GameActivity, loading level: " + levelID);
         mBoardView = (BoardView) findViewById(R.id.boardView);
         mLevel = new Level(this, levelID);
         mPuzzle = mLevel.puzzle;
@@ -87,6 +84,9 @@ public class GameActivity extends AppCompatActivity {
         mBoardView.setPuzzle(mPuzzle);
         mBoardView.setOnTouchListener(mTouchListener);
         startNewGame();
+
+        // Get settings
+        setInstanceVarsFromSharedPrefs();
     }
 
     @Override
@@ -119,12 +119,11 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void startNewGame() {
-        tapCount=0;
+        mTapCount = 0;
         TextView textView = (TextView) findViewById(R.id.tap_count);
-        textView.setText(Integer.toString(tapCount));
+        textView.setText(Integer.toString(mTapCount));
         mPuzzle.resetPositions();
         mBoardView.invalidate();
-        //TODO: reset a 'turns' counter
     }
 
     private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
@@ -137,9 +136,9 @@ public class GameActivity extends AppCompatActivity {
                 // Ensure that presses are within the board view
                 if (pos <= 64) {
                     //Confirmed that puzzle is still not solved and click is within board
-                    tapCount++;
+                    mTapCount++;
                     TextView textView = (TextView) findViewById(R.id.tap_count);
-                    textView.setText(Integer.toString(tapCount));
+                    textView.setText(Integer.toString(mTapCount));
                     // Play sound
                     if(mSoundOn) {
                         if(mpSound.isPlaying()) {
@@ -159,8 +158,6 @@ public class GameActivity extends AppCompatActivity {
                     mBoardView.invalidate();
                     //check correct, if so, toast!
                     if (mPuzzle.isCorrect()) {
-                        //toast
-                        //Toast.makeText(getApplicationContext(), "You did it! Go BACK and try another level!", Toast.LENGTH_LONG).show();
                         //Fragment
                         FragmentManager fm = getFragmentManager();
                         WinDialogFragment winDialogFragment = new WinDialogFragment();
@@ -174,10 +171,12 @@ public class GameActivity extends AppCompatActivity {
                         SharedPreferences sharedPref = getSharedPreferences("FencePuzzle", MODE_PRIVATE);
                         String currLevel = Integer.toString(getLevel());
                         int lastScore = sharedPref.getInt(currLevel, -1);
-                        if (lastScore <= 0) {
-                            SharedPreferences.Editor ed = sharedPref.edit();
-                            ed.putInt(currLevel, 1);
-                            ed.apply();
+                        if (lastScore <= 0 || mTapCount < lastScore ) {
+                            if (mTapCount < lastScore) {
+                                SharedPreferences.Editor ed = sharedPref.edit();
+                                ed.putInt(currLevel, mTapCount);
+                                ed.apply();
+                            }
                         }
                     }
                 }
@@ -208,6 +207,7 @@ public class GameActivity extends AppCompatActivity {
     private void setInstanceVarsFromSharedPrefs() {
         SharedPreferences sharedPref = getSharedPreferences("FencePuzzle", MODE_PRIVATE);
         mSoundOn = sharedPref.getBoolean("sound", true);
+        mPrevCount = sharedPref.getInt(Integer.toString(getLevel()), -1);
 
         // Get theme index
         String themeName = sharedPref.getString("theme_option", getString(R.string.white));
@@ -229,22 +229,8 @@ public class GameActivity extends AppCompatActivity {
         Log.d(TAG, "Vibration is: " + mVibration);
     }
 
-    public void setGameActivity(BoardView boardView) {
-    }
-
     public int getLevel () {
         return mLevel.getLevelID();
-    }
-
-    public void nextLevel (int levelID) {
-        Log.d(TAG, "In GameActivity, loading level: " + levelID);
-        mBoardView = (BoardView) findViewById(R.id.boardView);
-        mLevel = new Level(this, levelID);
-        mPuzzle = mLevel.puzzle;
-        mBoardView.setLevel(mLevel);
-        mBoardView.setPuzzle(mPuzzle);
-        mBoardView.setOnTouchListener(mTouchListener);
-        startNewGame();
     }
 
     private void playMusic() {
@@ -272,5 +258,13 @@ public class GameActivity extends AppCompatActivity {
                 cl.setBackgroundColor(Color.WHITE);
                 break;
         }
+    }
+
+    public int getmPrevCount() {
+        return mPrevCount;
+    }
+
+    public int getmTapCount() {
+        return mTapCount;
     }
 }
