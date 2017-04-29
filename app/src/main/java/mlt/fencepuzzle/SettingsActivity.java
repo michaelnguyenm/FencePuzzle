@@ -64,7 +64,7 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         private void updateThemeSummary() {
-            String themeSummary = "Current theme: " +
+            String themeSummary = "Puzzle background color: " +
                     sharedPrefs.getString("theme_option",
                             getString(R.string.white));
 
