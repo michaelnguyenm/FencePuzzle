@@ -27,9 +27,10 @@
             android:key="vibration"
             android:title="Vibration"
             android:defaultValue="true"
-            android:summary="Turn the vibration on or off for puzzle taps" />
+            android:summary="Turn the vibration on or off for fence piece taps" />
         <Preference
             android:key="reset_game"
-            android:title="Reset all records" />
+            android:title="Reset all records"
+            android:summary="Reset the saved record for every level"/>
     </PreferenceCategory>
 </PreferenceScreen>

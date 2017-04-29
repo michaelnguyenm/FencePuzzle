@@ -147,11 +147,14 @@ public class LevelSelectorActivity extends AppCompatActivity {
                 Log.d(TAG, "************************setInstanceVarsFromSharedPrefs: lastScore: "+lastScore);
             Log.d(TAG, "************************setInstanceVarsFromSharedPrefs: Tag: "+sTag);
 
-            if (lastScore<=0){
-                    b.setText(sTag);
-                }
-                else
-                    b.setText("♕");
+            if (lastScore<=0) {
+                b.setText(sTag);
+                b.setTextColor(getResources().getColor(R.color.textBlack));
+            } else {
+                b.setText("♕");
+                b.setTextColor(getResources().getColor(R.color.textGreen));
+            }
+
         }
 
 

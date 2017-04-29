@@ -21,6 +21,8 @@ import android.widget.TextView;
 
 import com.plattysoft.leonids.ParticleSystem;
 
+import org.w3c.dom.Text;
+
 import static mlt.fencepuzzle.R.drawable.confetti;
 
 public class GameActivity extends AppCompatActivity {
@@ -104,6 +106,7 @@ public class GameActivity extends AppCompatActivity {
         mBoardView.setLevel(mLevel);
         mBoardView.setPuzzle(mPuzzle);
         mBoardView.setOnTouchListener(mTouchListener);
+        setTitle("Level: " + levelID);
         startNewGame();
 
         // Get settings
@@ -114,6 +117,14 @@ public class GameActivity extends AppCompatActivity {
         mTapCount = 0;
         TextView textView = (TextView) findViewById(R.id.tap_count);
         textView.setText(Integer.toString(mTapCount));
+        if (mPrevCount == -1) {
+            if (mTheme == 0)
+                textView.setTextColor(getResources().getColor(R.color.textBlack));
+            else if (mTheme == 1)
+                textView.setTextColor(getResources().getColor(R.color.textWhite));
+        } else if (mTapCount < mPrevCount) {
+            textView.setTextColor(getResources().getColor(R.color.textGreen));
+        }
         mPuzzle.resetPositions();
         mBoardView.invalidate();
     }
@@ -167,6 +178,21 @@ public class GameActivity extends AppCompatActivity {
                     mTapCount++;
                     TextView textView = (TextView) findViewById(R.id.tap_count);
                     textView.setText(Integer.toString(mTapCount));
+                    if (mPrevCount == -1) {
+                        if (mTheme == 0)
+                            textView.setTextColor(getResources().getColor(R.color.textBlack));
+                        else if (mTheme == 1)
+                            textView.setTextColor(getResources().getColor(R.color.textWhite));
+                    } else if (mTapCount < mPrevCount) {
+                        textView.setTextColor(getResources().getColor(R.color.textGreen));
+                    } else if (mTapCount == mPrevCount) {
+                        if (mTheme == 0)
+                            textView.setTextColor(getResources().getColor(R.color.textBlack));
+                        else if (mTheme == 1)
+                            textView.setTextColor(getResources().getColor(R.color.textWhite));
+                    } else {
+                        textView.setTextColor(getResources().getColor(R.color.textRed));
+                    }
                     // Play sound
                     if(mSoundOn) {
                         if(mpSound.isPlaying()) {
@@ -233,11 +259,6 @@ public class GameActivity extends AppCompatActivity {
         SharedPreferences sharedPref = getSharedPreferences("FencePuzzle", MODE_PRIVATE);
         mSoundOn = sharedPref.getBoolean("sound", true);
         mPrevCount = sharedPref.getInt(Integer.toString(getLevel()), -1);
-        TextView textViewRecord = (TextView) findViewById(R.id.tap_record);
-        if (mPrevCount == -1)
-            textViewRecord.setText("Record: None");
-        else
-            textViewRecord.setText("Record: " + mPrevCount);
 
         // Get theme index
         String themeName = sharedPref.getString("theme_option", getString(R.string.white));
@@ -248,6 +269,29 @@ public class GameActivity extends AppCompatActivity {
                 mTheme = i;
             }
             i++;
+        }
+
+        TextView textViewRecord = (TextView) findViewById(R.id.tap_record);
+        if (mPrevCount == -1)
+            textViewRecord.setText("Record: None");
+        else
+            textViewRecord.setText("Record: " + mPrevCount);
+
+        TextView textViewCount = (TextView) findViewById(R.id.tap_count);
+        if (mPrevCount == -1) {
+            if (mTheme == 0)
+                textViewCount.setTextColor(getResources().getColor(R.color.textBlack));
+            else if (mTheme == 1)
+                textViewCount.setTextColor(getResources().getColor(R.color.textWhite));
+        } else if (mTapCount < mPrevCount) {
+            textViewCount.setTextColor(getResources().getColor(R.color.textGreen));
+        } else if (mTapCount == mPrevCount) {
+            if (mTheme == 0)
+                textViewCount.setTextColor(getResources().getColor(R.color.textBlack));
+            else if (mTheme == 1)
+                textViewCount.setTextColor(getResources().getColor(R.color.textWhite));
+        } else {
+            textViewCount.setTextColor(getResources().getColor(R.color.textRed));
         }
 
         mMusicOn = sharedPref.getBoolean("music", true);
@@ -277,12 +321,21 @@ public class GameActivity extends AppCompatActivity {
 
     private void setColor() {
         CoordinatorLayout cl = (CoordinatorLayout)findViewById(R.id.gameLayout);
+        TextView tv;
         switch(mTheme) {
             case 0:
                 cl.setBackgroundColor(Color.WHITE);
+                tv = (TextView)findViewById(R.id.tap_record);
+                tv.setTextColor(Color.BLACK);
+                tv = (TextView)findViewById(R.id.tap_title);
+                tv.setTextColor(Color.BLACK);
                 break;
             case 1:
                 cl.setBackgroundColor(Color.BLACK);
+                tv = (TextView)findViewById(R.id.tap_record);
+                tv.setTextColor(Color.WHITE);
+                tv = (TextView)findViewById(R.id.tap_title);
+                tv.setTextColor(Color.WHITE);
                 break;
             default:
                 cl.setBackgroundColor(Color.WHITE);

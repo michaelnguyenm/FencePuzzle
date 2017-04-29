@@ -38,9 +38,7 @@ public class WinDialogFragment extends DialogFragment {
         currScore = ((GameActivity) getActivity()).getmTapCount();
 
         StringBuilder sb = new StringBuilder();
-        if (lvl != 12)
-            sb.append("The current level is: " + lvl + "\n");
-        else
+        if (lvl == 12)
             sb.append("You have finished the last level! Congratulations!\n");
         if (prevScore == -1) {
             sb.append("Your new record is: " + currScore + "\n");
