@@ -23,6 +23,8 @@ public class WinDialogFragment extends DialogFragment {
         super.onStart();
 
         Window window = getDialog().getWindow();
+        Dialog dialog = getDialog();
+        dialog.setCanceledOnTouchOutside(false);
         WindowManager.LayoutParams windowParams = window.getAttributes();
         windowParams.dimAmount = 0.15f;
         windowParams.flags |= WindowManager.LayoutParams.FLAG_DIM_BEHIND;
