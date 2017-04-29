@@ -32,6 +32,8 @@ public class SettingsActivity extends AppCompatActivity {
 
             updateThemeSummary();
             setThemeListener();
+
+            //setResetListener();
         }
 
         private void setThemeListener() {
@@ -60,7 +62,10 @@ public class SettingsActivity extends AppCompatActivity {
             Preference themeMessagePref = findPreference("theme_option");
             themeMessagePref.setSummary(themeSummary);
         }
+/*
+        private void setResetListener() {
+            final Preference resetPref = findPreference("reset_option");
+        }
     }
-
-
+    */
 }
