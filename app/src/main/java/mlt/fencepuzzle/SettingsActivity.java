@@ -52,7 +52,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                         @Override
                         public boolean onPreferenceChange(Preference preference, Object newValue) {
-                            String themeSummary = "Current theme: " + newValue;
+                            String themeSummary = "Puzzle background color: " + newValue;
                             themePref.setSummary(themeSummary);
 
                             SharedPreferences.Editor ed = sharedPrefs.edit();
