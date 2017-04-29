@@ -171,12 +171,10 @@ public class GameActivity extends AppCompatActivity {
                         SharedPreferences sharedPref = getSharedPreferences("FencePuzzle", MODE_PRIVATE);
                         String currLevel = Integer.toString(getLevel());
                         int lastScore = sharedPref.getInt(currLevel, -1);
-                        if (lastScore <= 0 || mTapCount < lastScore ) {
-                            if (mTapCount < lastScore) {
-                                SharedPreferences.Editor ed = sharedPref.edit();
-                                ed.putInt(currLevel, mTapCount);
-                                ed.apply();
-                            }
+                        if (lastScore == -1 || mTapCount < lastScore ) {
+                            SharedPreferences.Editor ed = sharedPref.edit();
+                            ed.putInt(currLevel, mTapCount);
+                            ed.apply();
                         }
                     }
                 }
@@ -208,6 +206,11 @@ public class GameActivity extends AppCompatActivity {
         SharedPreferences sharedPref = getSharedPreferences("FencePuzzle", MODE_PRIVATE);
         mSoundOn = sharedPref.getBoolean("sound", true);
         mPrevCount = sharedPref.getInt(Integer.toString(getLevel()), -1);
+        TextView textViewRecord = (TextView) findViewById(R.id.tap_record);
+        if (mPrevCount == -1)
+            textViewRecord.setText("Record: None");
+        else
+            textViewRecord.setText("Record: " + mPrevCount);
 
         // Get theme index
         String themeName = sharedPref.getString("theme_option", getString(R.string.white));
