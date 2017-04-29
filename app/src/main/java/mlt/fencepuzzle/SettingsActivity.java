@@ -66,6 +66,6 @@ public class SettingsActivity extends AppCompatActivity {
         private void setResetListener() {
             final Preference resetPref = findPreference("reset_option");
         }
+        */
     }
-    */
 }
