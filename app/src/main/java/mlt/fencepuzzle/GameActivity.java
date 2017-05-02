@@ -21,8 +21,6 @@ import android.widget.TextView;
 
 import com.plattysoft.leonids.ParticleSystem;
 
-import org.w3c.dom.Text;
-
 import static mlt.fencepuzzle.R.drawable.confetti;
 
 public class GameActivity extends AppCompatActivity {
